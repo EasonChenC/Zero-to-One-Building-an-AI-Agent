@@ -29,13 +29,13 @@
 
 从模型、Harness 和 Agent 的关系开始，理解 Harness 为什么像连接模型与真实工作环境的“马鞍”，以及它如何让模型的决策能够落地执行。
 
-目录：[01-什么是-AI-Harness](./01-什么是-AI-Harness/)
+目录：[01-什么是-AI-Harness](./01-什么是-AI-Harness/01-什么是-AI-Harness.md)
 
 ### 第二章：手写一个最小 Agent Loop
 
 第二章构建了一个基于claude模型的最小任务循环。用户提交目标后，模型可以继续提问或给出最终结果；每个任务都有独立的历史记录，并支持任务取消、退出和轮数限制。
 
-目录：[02-构建一个agent-loop](./02-构建一个agent-loop/)
+目录：[02-构建一个agent-loop](./02-构建一个agent-loop/02-手写一个最小-Agent-Loop.md)
 
 ## 环境要求
 
