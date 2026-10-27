@@ -1,0 +1,10 @@
+[project]
+name = "02-agent-loop"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain-anthropic>=1.2,<1.3",
+]
+
+[tool.setuptools]
+packages = ["harness"]

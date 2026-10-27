@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="title desc">
+  <title id="title">AI Harness 的任务执行循环</title>
+  <desc id="desc">接收任务目标后，准备当前信息，由模型判断下一步并采取行动。环境执行后返回结果，结果进入下一轮判断；无需行动时检查任务是否完成，完成则输出结果，否则继续判断。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L10 5L0 10Z" fill="#344054"/>
+    </marker>
+    <style>
+      text { font-family: Arial, 'Microsoft YaHei', sans-serif; fill: #17212f; }
+      .step { fill: #fff; stroke: #475467; stroke-width: 2; }
+      .decision { fill: #fff; stroke: #475467; stroke-width: 2; }
+      .flow { fill: none; stroke: #344054; stroke-width: 2.4; marker-end: url(#arrow); }
+      .label { font-size: 16px; font-weight: 600; }
+      .note { font-size: 14px; fill: #475467; }
+    </style>
+  </defs>
+  <rect width="1200" height="690" fill="#f8fafc"/>
+  <text x="600" y="46" text-anchor="middle" font-size="27" font-weight="700">AI Harness 的任务执行循环</text>
+  <text x="600" y="75" text-anchor="middle" font-size="15" fill="#475467">模型提出下一步，外部环境执行并返回结果，循环直到任务完成</text>
+
+  <!-- 主流程 -->
+  <rect class="step" x="485" y="105" width="230" height="58" rx="8"/>
+  <text class="label" x="600" y="141" text-anchor="middle">接收任务目标</text>
+  <path class="flow" d="M600 163V194"/>
+
+  <rect class="step" x="485" y="197" width="230" height="58" rx="8"/>
+  <text class="label" x="600" y="233" text-anchor="middle">准备当前信息</text>
+  <path class="flow" d="M600 255V286"/>
+
+  <rect class="step" x="485" y="289" width="230" height="64" rx="8"/>
+  <text class="label" x="600" y="317" text-anchor="middle">模型判断下一步</text>
+  <text class="note" x="600" y="339" text-anchor="middle">依据目标与当前信息</text>
+  <path class="flow" d="M600 353V382"/>
+
+  <polygon class="decision" points="600,384 725,440 600,496 475,440"/>
+  <text class="label" x="600" y="436" text-anchor="middle">是否需要采取行动？</text>
+  <text class="note" x="600" y="458" text-anchor="middle">例如调用工具或操作环境</text>
+
+  <!-- 是：执行并回传 -->
+  <path class="flow" d="M725 440H805V397H835"/>
+  <text class="note" x="775" y="426" text-anchor="middle">是</text>
+  <rect class="step" x="838" y="366" width="230" height="62" rx="8"/>
+  <text class="label" x="953" y="393" text-anchor="middle">环境执行动作</text>
+  <text class="note" x="953" y="415" text-anchor="middle">系统、工具或外部服务</text>
+  <path class="flow" d="M953 428V465"/>
+  <rect class="step" x="838" y="468" width="230" height="62" rx="8"/>
+  <text class="label" x="953" y="495" text-anchor="middle">获取执行结果</text>
+  <text class="note" x="953" y="517" text-anchor="middle">成功、失败或状态变化</text>
+  <path class="flow" d="M838 499H760V321H718"/>
+  <text class="note" x="774" y="515" text-anchor="middle">结果加入当前信息</text>
+
+  <!-- 否：检查是否完成 -->
+  <path class="flow" d="M600 496V532"/>
+  <text class="note" x="620" y="520">否</text>
+  <polygon class="decision" points="600,534 725,584 600,634 475,584"/>
+  <text class="label" x="600" y="580" text-anchor="middle">任务是否完成？</text>
+  <text class="note" x="600" y="602" text-anchor="middle">或需要人来决定？</text>
+
+  <path class="flow" d="M475 584H350V321H482"/>
+  <text class="note" x="365" y="570" text-anchor="middle">否：补充信息后继续</text>
+  <path class="flow" d="M725 584H845"/>
+  <text class="note" x="782" y="574" text-anchor="middle">是</text>
+  <rect x="848" y="555" width="220" height="58" rx="8" fill="#ecfdf3" stroke="#16803c" stroke-width="2"/>
+  <text x="958" y="590" text-anchor="middle" font-size="17" font-weight="700" fill="#166534">输出结果并结束</text>
+</svg>

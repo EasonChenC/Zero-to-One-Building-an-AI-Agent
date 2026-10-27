@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Loop 单轮交互关系</title>
+  <desc id="desc">Harness 将任务目标和历史反馈交给模型，模型返回一个猜测行动；Harness 把猜测传给游戏环境，环境执行检查并返回反馈；Harness 记录结果用于下一轮。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0 0L10 5L0 10Z" fill="#344054"/></marker>
+    <style>
+      text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#17212f}.box{fill:#fff;stroke:#475467;stroke-width:2}.line{fill:none;stroke:#344054;stroke-width:2.4;marker-end:url(#arrow)}.label{font-size:17px;font-weight:700}.note{font-size:14px;fill:#475467}
+    </style>
+  </defs>
+  <rect width="1200" height="500" fill="#f8fafc"/>
+  <text x="600" y="48" text-anchor="middle" font-size="27" font-weight="700">单轮中，模型、Harness 与环境如何交互</text>
+  <rect x="70" y="135" width="250" height="205" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="195" y="178" text-anchor="middle" font-size="23" font-weight="700" fill="#1d4ed8">Harness / 循环程序</text>
+  <text class="note" x="195" y="218" text-anchor="middle">保存任务目标与历史</text>
+  <text class="note" x="195" y="247" text-anchor="middle">传递输入、执行行动</text>
+  <text class="note" x="195" y="276" text-anchor="middle">记录结果、检查是否停止</text>
+
+  <rect class="box" x="475" y="135" width="250" height="205" rx="10"/>
+  <text class="label" x="600" y="188" text-anchor="middle">模型函数</text>
+  <text class="note" x="600" y="230" text-anchor="middle">输入：目标 + 已有反馈</text>
+  <text class="note" x="600" y="260" text-anchor="middle">输出：下一步猜测</text>
+
+  <rect class="box" x="880" y="135" width="250" height="205" rx="10"/>
+  <text class="label" x="1005" y="188" text-anchor="middle">游戏环境</text>
+  <text class="note" x="1005" y="230" text-anchor="middle">输入：模型的猜测</text>
+  <text class="note" x="1005" y="260" text-anchor="middle">执行规则并检查答案</text>
+  <text class="note" x="1005" y="290" text-anchor="middle">输出：太大 / 太小 / 猜对</text>
+
+  <path class="line" d="M320 190H465"/><text class="note" x="392" y="174" text-anchor="middle">目标、历史</text>
+  <path class="line" d="M475 290H330"/><text class="note" x="402" y="318" text-anchor="middle">下一步猜测</text>
+  <path class="line" d="M725 210H870"/><text class="note" x="797" y="194" text-anchor="middle">执行猜测</text>
+  <path class="line" d="M880 290H735"/><text class="note" x="807" y="318" text-anchor="middle">环境反馈</text>
+
+  <path class="line" d="M1005 340V405H195V350"/>
+  <text x="600" y="395" text-anchor="middle" font-size="15" font-weight="600" fill="#344054">Harness 将反馈加入历史：未猜中则进入下一轮；猜中或达到轮数上限则停止</text>
+</svg>

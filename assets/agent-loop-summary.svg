@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Loop 简化流程</title>
+  <desc id="desc">给出目标和当前信息，模型提出下一步行动，程序交给环境执行，环境返回结果并更新信息；如果任务未完成则回到模型继续，否则结束。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0 0L10 5L0 10Z" fill="#344054"/></marker>
+    <style>
+      text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#17212f}.step{fill:#fff;stroke:#475467;stroke-width:2}.decision{fill:#fff;stroke:#475467;stroke-width:2}.flow{fill:none;stroke:#344054;stroke-width:2.4;marker-end:url(#arrow)}.label{font-size:17px;font-weight:700}.note{font-size:14px;fill:#475467}
+    </style>
+  </defs>
+  <rect width="1000" height="650" fill="#f8fafc"/>
+  <text x="500" y="45" text-anchor="middle" font-size="26" font-weight="700">Agent Loop 的最小闭环</text>
+
+  <rect class="step" x="350" y="78" width="300" height="56" rx="8"/>
+  <text class="label" x="500" y="113" text-anchor="middle">给出目标和当前信息</text>
+  <path class="flow" d="M500 134V166"/>
+  <rect class="step" x="350" y="168" width="300" height="56" rx="8"/>
+  <text class="label" x="500" y="203" text-anchor="middle">模型提出下一步行动</text>
+  <path class="flow" d="M500 224V256"/>
+  <rect class="step" x="350" y="258" width="300" height="56" rx="8"/>
+  <text class="label" x="500" y="293" text-anchor="middle">程序把行动交给环境执行</text>
+  <path class="flow" d="M500 314V346"/>
+  <rect class="step" x="350" y="348" width="300" height="56" rx="8"/>
+  <text class="label" x="500" y="383" text-anchor="middle">环境返回结果并更新信息</text>
+  <path class="flow" d="M500 404V436"/>
+  <polygon class="decision" points="500,438 640,494 500,550 360,494"/>
+  <text class="label" x="500" y="490" text-anchor="middle">任务完成？</text>
+
+  <path class="flow" d="M360 494H210V196H342"/>
+  <text class="note" x="240" y="480" text-anchor="middle">否：带着新信息继续</text>
+  <path class="flow" d="M640 494H780V590H500"/>
+  <text class="note" x="735" y="478" text-anchor="middle">是</text>
+  <rect x="350" y="562" width="300" height="56" rx="8" fill="#ecfdf3" stroke="#16803c" stroke-width="2"/>
+  <text x="500" y="597" text-anchor="middle" font-size="17" font-weight="700" fill="#166534">结束并输出结果</text>
+</svg>

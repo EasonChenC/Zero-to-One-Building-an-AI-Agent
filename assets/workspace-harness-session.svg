@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="580" viewBox="0 0 1180 580" role="img" aria-labelledby="title desc">
+  <title id="title">外层会话循环与内层任务循环的关系</title>
+  <desc id="desc">外层 while 等待用户输入任务，exit 退出程序。一个任务进入 WorkspaceHarness 的内层 while，模型提问时继续当前任务，最终回答、取消、错误或达到上限时返回结果，再接收下一个任务。每次新任务创建独立历史。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#475467"/></marker>
+    <style>text{font-family:'Microsoft YaHei',Arial,sans-serif;fill:#182230}.node{fill:#fff;stroke:#667085;stroke-width:1.8}.edge{fill:none;stroke:#475467;stroke-width:2;marker-end:url(#arrow)}.label{font-size:19px;font-weight:600}.note{font-size:17px;fill:#475467}</style>
+  </defs>
+  <rect width="1180" height="580" fill="#f8fafc"/>
+  <text x="590" y="48" text-anchor="middle" font-size="28" font-weight="700">两层 while，各管一件事</text>
+  <rect x="50" y="88" width="1080" height="440" rx="10" fill="none" stroke="#98a2b3" stroke-width="1.8"/>
+  <text x="75" y="122" class="label">main.py · 外层循环：持续接收任务</text>
+  <rect class="node" x="90" y="175" width="220" height="70" rx="6"/>
+  <text class="label" x="200" y="218" text-anchor="middle">等待用户输入任务</text>
+  <path class="edge" d="M310 210H380"/>
+  <rect x="385" y="155" width="490" height="225" rx="8" fill="#eef6ff" stroke="#3263a8" stroke-width="1.8"/>
+  <text class="label" x="630" y="191" text-anchor="middle">WorkspaceHarness · 内层任务循环</text>
+  <text class="note" x="630" y="224" text-anchor="middle">创建独立状态 → 调用 Claude → 处理动作</text>
+  <rect class="node" x="440" y="261" width="380" height="60" rx="6"/>
+  <text class="label" x="630" y="298" text-anchor="middle">ask_user → 补充信息 → 继续本任务</text>
+  <path class="edge" d="M820 291H850V238H630"/>
+  <text class="note" x="630" y="354" text-anchor="middle">final / 取消 / 错误 / 达到上限 → 返回结果</text>
+  <path class="edge" d="M875 267H935"/>
+  <rect class="node" x="940" y="232" width="145" height="70" rx="6"/>
+  <text class="label" x="1012" y="275" text-anchor="middle">显示结果</text>
+  <path class="edge" d="M1012 302V445H200V248"/>
+  <text class="note" x="600" y="430" text-anchor="middle">普通返回：接收下一个任务，新建历史，不继承上个任务内容</text>
+  <path class="edge" d="M90 210H72V490H935"/>
+  <text class="note" x="590" y="482" text-anchor="middle">用户输入 /exit：无论在任务输入处还是补充回答处，都请求退出程序</text>
+  <rect class="node" x="940" y="465" width="145" height="48" rx="6"/>
+  <text class="label" x="1012" y="496" text-anchor="middle">退出程序</text>
+</svg>

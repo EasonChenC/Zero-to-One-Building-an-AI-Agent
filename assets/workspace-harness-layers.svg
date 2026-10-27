@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="680" viewBox="0 0 1280 680" role="img" aria-labelledby="title desc">
+  <title id="title">最小 Harness 的模块依赖关系</title>
+  <desc id="desc">终端入口 main.py 调用 loop.py 的 WorkspaceHarness。循环使用 state.py 的任务状态，通过 ModelClient 接口调用 ClaudeClient。config.py 加载本地配置，prompts.py 提供系统指令。后续新增工具执行分支，不把全部能力堆进主循环。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#475467"/></marker>
+    <style>text{font-family:'Microsoft YaHei',Arial,sans-serif;fill:#182230}.box{fill:#fff;stroke:#667085;stroke-width:1.8}.line{fill:none;stroke:#475467;stroke-width:2;marker-end:url(#arrow)}.head{font-size:21px;font-weight:600}.body{font-size:17px;fill:#475467}</style>
+  </defs>
+  <rect width="1280" height="680" fill="#f8fafc"/>
+  <text x="640" y="48" text-anchor="middle" font-size="28" font-weight="700">把交互、循环、状态和模型通信分开</text>
+  <text x="640" y="82" text-anchor="middle" class="body">实线箭头表示调用或读取，不表示各模块按先后顺序执行</text>
+
+  <rect class="box" x="55" y="150" width="265" height="150" rx="8"/>
+  <text class="head" x="187" y="191" text-anchor="middle">main.py · 终端入口</text>
+  <text class="body" x="187" y="226" text-anchor="middle">外层 while：接收多个任务</text>
+  <text class="body" x="187" y="257" text-anchor="middle">输入、结果展示、退出</text>
+
+  <rect x="435" y="150" width="330" height="150" rx="8" fill="#eef6ff" stroke="#3263a8" stroke-width="1.8"/>
+  <text class="head" x="600" y="191" text-anchor="middle">loop.py · WorkspaceHarness</text>
+  <text class="body" x="600" y="226" text-anchor="middle">内层 while：推进一个任务</text>
+  <text class="body" x="600" y="257" text-anchor="middle">分派动作，控制结束与取消</text>
+  <path class="line" d="M320 225H431"/>
+  <text class="body" x="378" y="210" text-anchor="middle">run_task</text>
+
+  <rect class="box" x="890" y="150" width="330" height="150" rx="8"/>
+  <text class="head" x="1055" y="191" text-anchor="middle">model.py · 模型接口</text>
+  <text class="body" x="1055" y="226" text-anchor="middle">ClaudeClient：请求 /v1/messages</text>
+  <text class="body" x="1055" y="257" text-anchor="middle">校验响应，返回 ModelAction</text>
+  <path class="line" d="M765 225H886"/>
+  <text class="body" x="827" y="210" text-anchor="middle">generate</text>
+
+  <rect class="box" x="435" y="410" width="330" height="115" rx="8"/>
+  <text class="head" x="600" y="448" text-anchor="middle">state.py · 任务状态</text>
+  <text class="body" x="600" y="482" text-anchor="middle">消息、动作、轮数、状态、结果</text>
+  <path class="line" d="M600 300V406"/>
+  <text class="body" x="654" y="358" text-anchor="middle">维护</text>
+
+  <rect class="box" x="55" y="410" width="265" height="115" rx="8"/>
+  <text class="head" x="187" y="448" text-anchor="middle">prompts.py · 系统指令</text>
+  <text class="body" x="187" y="482" text-anchor="middle">职责、能力限制、动作约定</text>
+  <path class="line" d="M435 265H370V467H324"/>
+  <text class="body" x="387" y="390">读取</text>
+
+  <rect class="box" x="890" y="410" width="330" height="115" rx="8"/>
+  <text class="head" x="1055" y="448" text-anchor="middle">config.py · 配置</text>
+  <text class="body" x="1055" y="482" text-anchor="middle">.env → Settings → ClaudeClient</text>
+  <path class="line" d="M1055 300V406"/>
+  <text class="body" x="1121" y="358" text-anchor="middle">使用配置</text>
+
+  <path d="M55 578H1220" fill="none" stroke="#d0d5dd"/>
+  <text x="640" y="617" text-anchor="middle" font-size="19" font-weight="600">后续：在动作分派处接入工具，在输入准备处接入检索与记忆</text>
+  <text x="640" y="650" text-anchor="middle" class="body">保留主干、逐步扩展；本章不提前实现这些能力</text>
+</svg>

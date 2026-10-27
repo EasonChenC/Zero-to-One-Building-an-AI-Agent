@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1140" viewBox="0 0 1320 1140" role="img" aria-labelledby="title desc">
+  <title id="title">工作空间任务助手：单个任务的 while 循环</title>
+  <desc id="desc">用户输入任务并初始化独立状态。任务内每次调用前检查轮数，调用 Claude 并解析动作。final 返回最终回答；ask_user 在额度允许时收集补充信息，更新消息并回到轮数检查。取消、达到轮数上限或模型请求失败均以不同状态返回。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#475467"/></marker>
+    <style>text{font-family:'Microsoft YaHei','Noto Sans CJK SC',Arial,sans-serif;fill:#182230}.node{fill:#fff;stroke:#667085;stroke-width:1.8}.edge{fill:none;stroke:#475467;stroke-width:2;marker-end:url(#arrow)}.label{font-size:19px;font-weight:600}.note{font-size:16px;fill:#475467}.code{font-family:Consolas,'Microsoft YaHei',monospace;font-size:16px;fill:#475467}</style>
+  </defs>
+  <rect width="1320" height="1140" fill="#f8fafc"/>
+  <text x="660" y="48" text-anchor="middle" font-size="28" font-weight="700">一个任务，怎样在 while 循环中推进？</text>
+  <text x="660" y="81" text-anchor="middle" class="note">当前动作仅有 ask_user 与 final；暂不操作文件或执行命令</text>
+
+  <rect class="node" x="445" y="112" width="340" height="60" rx="8"/>
+  <text class="label" x="615" y="149" text-anchor="middle">用户输入任务</text>
+  <path class="edge" d="M615 172V202"/>
+  <rect class="node" x="445" y="205" width="340" height="68" rx="6"/>
+  <text class="label" x="615" y="234" text-anchor="middle">创建独立的 TaskState</text>
+  <text class="note" x="615" y="258" text-anchor="middle">messages = [用户任务]，turns = 0</text>
+  <path class="edge" d="M615 273V317"/>
+
+  <rect x="220" y="300" width="650" height="690" rx="10" fill="none" stroke="#98a2b3" stroke-dasharray="7 5"/>
+  <text x="242" y="327" class="code">while state.status == "running"</text>
+  <polygon class="node" points="615,350 760,406 615,462 470,406"/>
+  <text class="label" x="615" y="402" text-anchor="middle">调用轮数已到上限？</text>
+  <text class="code" x="615" y="426" text-anchor="middle">turns &gt;= max_turns</text>
+  <path class="edge" d="M615 462V500"/>
+  <text class="note" x="636" y="487">否</text>
+  <rect class="node" x="445" y="503" width="340" height="78" rx="6"/>
+  <text class="label" x="615" y="533" text-anchor="middle">轮数 +1，调用 Claude</text>
+  <text class="note" x="615" y="559" text-anchor="middle">检查响应，解析并保存模型动作</text>
+  <path class="edge" d="M615 581V619"/>
+  <polygon class="node" points="615,622 760,678 615,734 470,678"/>
+  <text class="label" x="615" y="685" text-anchor="middle">模型动作是什么？</text>
+  <path class="edge" d="M615 734V783"/>
+  <text class="code" x="635" y="766">ask_user</text>
+  <rect class="node" x="445" y="786" width="340" height="78" rx="6"/>
+  <text class="label" x="615" y="816" text-anchor="middle">显示问题，等待用户补充</text>
+  <text class="note" x="615" y="842" text-anchor="middle">无下一轮额度则直接回到上限检查</text>
+  <path class="edge" d="M615 864V901"/>
+  <rect class="node" x="445" y="904" width="340" height="60" rx="6"/>
+  <text class="label" x="615" y="941" text-anchor="middle">将有效回答加入消息历史</text>
+  <path class="edge" d="M445 934H295V406H467"/>
+  <text class="note" x="278" y="672" transform="rotate(-90 278 672)" text-anchor="middle">带着更新后的消息继续下一轮</text>
+
+  <path class="edge" d="M760 406H910"/>
+  <text class="note" x="826" y="392" text-anchor="middle">是</text>
+  <rect class="node" x="913" y="377" width="325" height="58" rx="6"/>
+  <text class="label" x="1075" y="413" text-anchor="middle">max_turns：达到上限</text>
+  <path class="edge" d="M785 542H910"/>
+  <text class="note" x="842" y="528" text-anchor="middle">失败</text>
+  <rect class="node" x="913" y="513" width="325" height="58" rx="6"/>
+  <text class="label" x="1075" y="549" text-anchor="middle">error：请求或解析失败</text>
+  <path class="edge" d="M760 678H910"/>
+  <text class="code" x="830" y="663" text-anchor="middle">final</text>
+  <rect x="913" y="649" width="325" height="58" rx="6" fill="#eef6ff" stroke="#3263a8" stroke-width="1.8"/>
+  <text class="label" x="1075" y="685" text-anchor="middle">completed：得到最终回答</text>
+  <path class="edge" d="M785 825H910"/>
+  <text class="note" x="843" y="811" text-anchor="middle">取消</text>
+  <rect class="node" x="913" y="796" width="325" height="58" rx="6"/>
+  <text class="label" x="1075" y="832" text-anchor="middle">cancelled：用户取消</text>
+
+  <path d="M1238 406H1268V1025H615" fill="none" stroke="#98a2b3" stroke-width="1.8"/>
+  <path d="M1238 542H1268M1238 678H1268M1238 825H1268" fill="none" stroke="#98a2b3" stroke-width="1.8"/>
+  <path class="edge" d="M615 1025V1047"/>
+  <rect class="node" x="445" y="1050" width="340" height="58" rx="8"/>
+  <text class="label" x="615" y="1086" text-anchor="middle">返回 TaskResult</text>
+</svg>

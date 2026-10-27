@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">模型、Harness 与 Agent 的关系</title>
+  <desc id="desc">模型提供理解和生成能力，Harness 为模型安排任务并连接工作环境和反馈；模型与 Harness 配合后，构成围绕目标持续推进任务的 Agent。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L10 5L0 10Z" fill="#344054"/>
+    </marker>
+    <style>
+      text { font-family: Arial, 'Microsoft YaHei', sans-serif; fill: #17212f; }
+      .box { fill: #fff; stroke: #475467; stroke-width: 2; }
+      .arrow { fill: none; stroke: #344054; stroke-width: 2.5; marker-end: url(#arrow); }
+      .title { font-size: 25px; font-weight: 700; }
+      .body { font-size: 17px; fill: #344054; }
+      .small { font-size: 15px; fill: #475467; }
+    </style>
+  </defs>
+  <rect width="1100" height="560" fill="#f8fafc"/>
+  <text x="550" y="54" text-anchor="middle" font-size="28" font-weight="700">模型、Harness 与 Agent 的关系</text>
+  <text x="550" y="84" text-anchor="middle" class="small">能力与工作安排协同，形成面向目标的任务执行方式</text>
+
+  <!-- Inputs -->
+  <rect class="box" x="70" y="170" width="270" height="190" rx="8"/>
+  <rect x="70" y="170" width="270" height="9" rx="4" fill="#2563eb"/>
+  <text class="title" x="205" y="222" text-anchor="middle">模型</text>
+  <text class="body" x="205" y="264" text-anchor="middle">理解输入 · 分析 · 生成</text>
+  <text class="small" x="205" y="302" text-anchor="middle">提供语言与推理能力</text>
+
+  <rect class="box" x="415" y="170" width="270" height="190" rx="8"/>
+  <rect x="415" y="170" width="270" height="9" rx="4" fill="#0f766e"/>
+  <text class="title" x="550" y="222" text-anchor="middle">Harness</text>
+  <text class="body" x="550" y="260" text-anchor="middle">安排任务 · 连接环境</text>
+  <text class="body" x="550" y="287" text-anchor="middle">执行行动 · 返回结果</text>
+  <text class="small" x="550" y="328" text-anchor="middle">让模型的能力进入实际工作</text>
+
+  <path class="arrow" d="M340 265H405"/>
+  <text class="small" x="372" y="245" text-anchor="middle">提供能力</text>
+  <path class="arrow" d="M550 360V412H205V363"/>
+  <text class="small" x="445" y="405" text-anchor="middle">环境与结果形成反馈</text>
+
+  <!-- Combined relationship -->
+  <path class="arrow" d="M685 265H766"/>
+  <text class="small" x="726" y="245" text-anchor="middle">协同</text>
+  <rect x="780" y="170" width="250" height="190" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="905" y="222" text-anchor="middle" font-size="25" font-weight="700" fill="#1d4ed8">Agent</text>
+  <text class="body" x="905" y="264" text-anchor="middle">围绕目标持续推进任务</text>
+  <text class="small" x="905" y="302" text-anchor="middle">模型 + Harness 的协作形态</text>
+
+  <rect x="170" y="455" width="760" height="54" rx="6" fill="#eef2f6" stroke="#cbd5e1"/>
+  <text x="550" y="489" text-anchor="middle" font-size="18" font-weight="600">模型提供能力　+　Harness 组织工作　→　Agent 执行目标任务</text>
+</svg>

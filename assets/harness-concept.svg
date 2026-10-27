@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690">
+<defs>
+ <pattern id="paper" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="18" fill="#f6f1e7"/><circle cx="3" cy="5" r=".55" fill="#d8cfbd" opacity=".38"/><circle cx="14" cy="13" r=".45" fill="#d8cfbd" opacity=".32"/></pattern>
+ <filter id="lift" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="2" dy="7" stdDeviation="5" flood-color="#453b31" flood-opacity=".14"/></filter>
+ <marker id="inkArrow" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto"><path d="M1 1L10 5L1 9" fill="none" stroke="#343d3b" stroke-width="1.8"/></marker>
+ <marker id="coralArrow" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto"><path d="M1 1L10 5L1 9" fill="none" stroke="#c95f49" stroke-width="1.8"/></marker>
+</defs>
+<rect width="1200" height="690" fill="url(#paper)"/>
+<path d="M63 72 Q315 47 570 68 T1135 65" fill="none" stroke="#c6bba7" stroke-width="1.5"/>
+<text x="75" y="55" font-family="Georgia,'Microsoft YaHei',serif" font-size="16" letter-spacing="3" fill="#857b6e">FIELD NOTE 01 / AI SYSTEMS</text>
+<text x="75" y="125" font-family="Georgia,'Microsoft YaHei',serif" font-size="38" font-weight="700" fill="#263330">模型不是独自工作的</text>
+<text x="78" y="159" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="18" fill="#756e63">Harness 是围绕它搭起的一张“工作台”</text>
+
+<!-- loosely drawn desk boundary -->
+<path d="M78 205 Q99 190 129 198 L1087 191 Q1120 196 1124 229 L1117 552 Q1109 576 1081 572 L110 579 Q78 574 79 544 Z" fill="#fffdf8" stroke="#3d4944" stroke-width="3.2" filter="url(#lift)"/>
+<path d="M94 220 Q352 213 585 219" fill="none" stroke="#d9d1c4" stroke-width="1.5"/>
+<text x="107" y="250" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" font-weight="700" fill="#6c5b94">HARNESS / 工作环境</text>
+<path d="M300 244 Q430 232 551 241" fill="none" stroke="#9d8bc3" stroke-width="2"/>
+
+<!-- task card -->
+<g transform="rotate(-2 232 350)" filter="url(#lift)">
+ <path d="M132 286 Q226 280 329 288 L324 420 Q230 429 128 419 Z" fill="#f5e8c9" stroke="#51483c" stroke-width="2.4"/>
+ <text x="154" y="320" font-family="Georgia,'Microsoft YaHei',serif" font-size="16" fill="#876d40">任务便笺</text>
+ <text x="153" y="355" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="21" font-weight="700" fill="#303b37">修复登录问题</text>
+ <path d="M153 372 Q222 378 294 369" fill="none" stroke="#d18161" stroke-width="3"/>
+ <text x="153" y="400" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="15" fill="#6b6256">先理解项目，再验证修改</text>
+</g>
+
+<!-- model represented as a small person/idea node -->
+<g transform="rotate(1 600 360)">
+ <path d="M501 294 Q594 279 702 294 L696 434 Q596 444 498 433 Z" fill="#e8efdf" stroke="#39483e" stroke-width="2.6" filter="url(#lift)"/>
+ <circle cx="600" cy="333" r="27" fill="#f0bd67" stroke="#39483e" stroke-width="2"/>
+ <path d="M590 341 Q600 326 611 341M588 353 Q600 361 612 352" fill="none" stroke="#39483e" stroke-width="2"/>
+ <text x="600" y="390" text-anchor="middle" font-family="Georgia,'Microsoft YaHei',serif" font-size="23" font-weight="700" fill="#293a32">模型</text>
+ <text x="600" y="416" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="15" fill="#5f6a5e">理解 · 判断 · 提议</text>
+</g>
+
+<!-- project window -->
+<g transform="rotate(-1 936 339)" filter="url(#lift)">
+ <rect x="828" y="280" width="205" height="126" rx="5" fill="#e7edf2" stroke="#39454a" stroke-width="2.4"/>
+ <path d="M828 303h205" stroke="#39454a" stroke-width="2"/>
+ <circle cx="844" cy="292" r="4" fill="#d47761"/><circle cx="858" cy="292" r="4" fill="#e5b75c"/><circle cx="872" cy="292" r="4" fill="#85a88c"/>
+ <text x="850" y="334" font-family="monospace" font-size="14" fill="#52616a">login.ts</text>
+ <path d="M851 350h74M851 367h118M851 383h88" stroke="#78909a" stroke-width="4" stroke-linecap="round"/>
+</g>
+
+<!-- test result card -->
+<g transform="rotate(2 931 472)" filter="url(#lift)">
+ <path d="M835 438 Q920 431 1028 440 L1022 514 Q921 521 831 512 Z" fill="#f4ded7" stroke="#57413a" stroke-width="2.2"/>
+ <text x="856" y="468" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="17" font-weight="700" fill="#9e4b3d">测试反馈</text>
+ <text x="856" y="494" font-family="monospace" font-size="14" fill="#594b46">2 passed · 1 failed</text>
+ <path d="M854 502 Q926 506 1001 499" fill="none" stroke="#c95f49" stroke-width="2"/>
+</g>
+
+<!-- hand-drawn connectors -->
+<path d="M332 349 Q408 326 492 343" fill="none" stroke="#343d3b" stroke-width="3" marker-end="url(#inkArrow)"/>
+<text x="411" y="316" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="15" fill="#625c51">给出目标与背景</text>
+<path d="M704 350 Q764 329 821 343" fill="none" stroke="#343d3b" stroke-width="3" marker-end="url(#inkArrow)"/>
+<text x="763" y="311" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="15" fill="#625c51">在项目中行动</text>
+<path d="M846 444 Q763 497 697 419" fill="none" stroke="#c95f49" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#coralArrow)"/>
+<text x="758" y="489" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="15" fill="#a55443">结果回来，继续调整</text>
+
+<!-- outside outcome -->
+<path d="M1060 352 Q1100 350 1136 352" fill="none" stroke="#343d3b" stroke-width="3" marker-end="url(#inkArrow)"/>
+<text x="1090" y="331" text-anchor="middle" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="14" fill="#625c51">完成</text>
+<path d="M113 616 Q342 607 570 614 T1084 611" fill="none" stroke="#c6bba7" stroke-width="1.5"/>
+<text x="600" y="653" text-anchor="middle" font-family="Georgia,'Microsoft YaHei',serif" font-size="20" fill="#34413c">有目标可循，有地方行动，也看得到行动的结果</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">工作空间任务助手 Harness 本章流程总结</title>
+  <desc id="desc">外层循环接收用户任务，创建 TaskState 后进入内层循环调用 Claude。模型询问用户时保存回答并继续下一轮；模型给出最终回答、用户取消、发生错误或达到轮数上限时返回任务状态，外层循环继续接收新任务。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0 0L10 5L0 10Z" fill="#344054"/></marker>
+    <style>
+      text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#17212f}.box{fill:#fff;stroke:#475467;stroke-width:2}.loop{fill:none;stroke:#98a2b3;stroke-width:2;stroke-dasharray:8 6}.decision{fill:#fff;stroke:#475467;stroke-width:2}.flow{fill:none;stroke:#344054;stroke-width:2.4;marker-end:url(#arrow)}.label{font-size:18px;font-weight:700}.note{font-size:15px;fill:#475467}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#f8fafc"/>
+  <text x="600" y="46" text-anchor="middle" font-size="28" font-weight="700">最小 Harness 的完整运行流程</text>
+  <text x="600" y="76" text-anchor="middle" class="note">外层循环管理会话，内层循环推进当前任务</text>
+
+  <rect class="box" x="465" y="105" width="270" height="58" rx="8"/>
+  <text class="label" x="600" y="141" text-anchor="middle">外层 while：接收用户任务</text>
+  <path class="flow" d="M600 163V195"/>
+  <rect class="box" x="465" y="198" width="270" height="58" rx="8"/>
+  <text class="label" x="600" y="234" text-anchor="middle">TaskState：建立目标与历史</text>
+  <path class="flow" d="M600 256V292"/>
+
+  <rect class="loop" x="285" y="285" width="630" height="275" rx="14"/>
+  <text x="310" y="315" class="note" font-weight="700">内层 while：推进当前任务</text>
+  <rect class="box" x="465" y="335" width="270" height="58" rx="8"/>
+  <text class="label" x="600" y="371" text-anchor="middle">调用 Claude 并读取动作</text>
+  <path class="flow" d="M600 393V427"/>
+  <polygon class="decision" points="600,430 730,485 600,540 470,485"/>
+  <text class="label" x="600" y="480" text-anchor="middle">动作是什么？</text>
+  <text class="note" x="600" y="502" text-anchor="middle">ask_user / final</text>
+
+  <path class="flow" d="M470 485H365V365H457"/>
+  <text class="note" x="355" y="470" text-anchor="middle">ask_user：接收补充信息</text>
+  <text class="note" x="355" y="490" text-anchor="middle">并回到下一轮</text>
+
+  <path class="flow" d="M730 485H820V365H743"/>
+  <text class="note" x="850" y="470" text-anchor="middle">final：输出结果</text>
+  <rect x="835" y="335" width="265" height="58" rx="8" fill="#ecfdf3" stroke="#16803c" stroke-width="2"/>
+  <text x="967" y="371" text-anchor="middle" font-size="18" font-weight="700" fill="#166534">当前任务完成</text>
+
+  <path class="flow" d="M835 393V615H735"/>
+  <rect class="box" x="465" y="615" width="270" height="58" rx="8"/>
+  <text class="label" x="600" y="651" text-anchor="middle">返回 TaskResult</text>
+  <text class="note" x="600" y="694" text-anchor="middle">完成 / 取消 / 错误 / 达到上限</text>
+  <path class="flow" d="M465 644H210V134H457"/>
+  <text class="note" x="180" y="410" text-anchor="middle" transform="rotate(-90 180 410)">返回外层循环，接收下一个任务</text>
+</svg>
