@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="1485" viewBox="0 0 1180 1485" role="img" aria-labelledby="tm-title tm-desc">
+  <title id="tm-title">ToolMessage 的字段结构与回传方式</title>
+  <desc id="tm-desc">ToolMessage 是 Harness 执行工具后创建的结果消息。必填字段为 content 和 tool_call_id，其余字段为 type、status、name、id、artifact、additional_kwargs、response_metadata。工具请求 id 必须与结果消息 tool_call_id 一致。ChatAnthropic 会将它转换为 user 消息中的 tool_result 内容块，tool_call_id 对应 tool_use_id，错误状态转换为 is_error。</desc>
+  <defs>
+    <marker id="tm-arrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10" fill="none" stroke="#43536a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text{font-family:'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#20324a}
+      .title{font-size:30px;font-weight:700}
+      .heading{font-size:25px;font-weight:700}
+      .label{font-size:22px;font-weight:600}
+      .body{font-size:21px}
+      .small{font-size:20px;fill:#526379}
+      .mono{font-family:'Cascadia Code',Consolas,'Microsoft YaHei',monospace;font-size:20px}
+      .code{font-family:'Cascadia Code',Consolas,'Microsoft YaHei',monospace;font-size:20px}
+      .link{fill:none;stroke:#43536a;stroke-width:2;marker-end:url(#tm-arrow)}
+      .rule{stroke:#dce3ec;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1180" height="1485" fill="#ffffff"/>
+  <text x="40" y="52" class="title">ToolMessage：工具执行后，交还给模型的一封“回信”</text>
+  <text x="40" y="88" class="body">它由 Harness 创建，加入消息历史；不是模型发出的工具请求，也不是工具函数本身。</text>
+
+  <!-- 请求与结果用相同的编号配对；中间的程序才是真正的执行者。 -->
+  <rect x="40" y="120" width="380" height="120" rx="10" fill="#eaf1fc" stroke="#9db4d5" stroke-width="1.4"/>
+  <text x="60" y="155" class="label">请求：AIMessage.tool_calls[0]</text>
+  <text x="60" y="187" class="mono">name="read_file"</text>
+  <rect x="57" y="197" width="180" height="32" rx="5" fill="#d7e6fa"/>
+  <text x="67" y="220" class="mono">id="call_1"</text>
+
+  <rect x="470" y="120" width="210" height="120" rx="10" fill="#fff4df" stroke="#d2b47b" stroke-width="1.4"/>
+  <text x="575" y="168" text-anchor="middle" class="label">Harness</text>
+  <text x="575" y="204" text-anchor="middle" class="body">校验并执行工具</text>
+
+  <rect x="730" y="120" width="410" height="120" rx="10" fill="#e7f3eb" stroke="#8fbaa2" stroke-width="1.4"/>
+  <text x="750" y="155" class="label">结果：ToolMessage</text>
+  <text x="750" y="187" class="mono">content="会议纪要..."</text>
+  <rect x="747" y="197" width="320" height="32" rx="5" fill="#d7e6fa"/>
+  <text x="757" y="220" class="mono">tool_call_id="call_1"</text>
+  <path d="M420 180 H460" class="link"/>
+  <path d="M680 180 H720" class="link"/>
+  <text x="590" y="270" text-anchor="middle" class="small">蓝色标出的两个编号必须一致，模型才能知道“这个结果属于哪次调用”。</text>
+
+  <!-- 字段表：依据本项目实际安装版本，列出自身字段和继承字段。 -->
+  <text x="40" y="313" class="heading">01 / 消息对象里有哪些字段？</text>
+  <rect x="40" y="336" width="1100" height="50" fill="#edf1f6"/>
+  <text x="58" y="369" class="label">字段</text>
+  <text x="300" y="369" class="label">Python 类型</text>
+  <text x="595" y="369" class="label">必填 / 默认值</text>
+  <text x="780" y="369" class="label">存放什么</text>
+
+  <rect x="40" y="386" width="1100" height="80" fill="#f5f9ff"/>
+  <text x="58" y="432" class="mono">content</text>
+  <text x="300" y="417" class="mono">str 或</text>
+  <text x="300" y="448" class="mono">list[str | dict]</text>
+  <text x="595" y="432" class="body" font-weight="600">必填</text>
+  <text x="780" y="418" class="body">给模型看的工具结果</text>
+  <text x="780" y="449" class="small">文本，或支持的内容块列表</text>
+
+  <rect x="40" y="466" width="1100" height="64" fill="#f5f9ff"/>
+  <text x="58" y="506" class="mono">tool_call_id</text>
+  <text x="300" y="506" class="mono">str</text>
+  <text x="595" y="506" class="body" font-weight="600">必填</text>
+  <text x="780" y="506" class="body">对应哪一次工具请求</text>
+  <path d="M40 466 H1140 M40 530 H1140" class="rule"/>
+
+  <text x="58" y="570" class="mono">type</text>
+  <text x="300" y="570" class="mono">Literal["tool"]</text>
+  <text x="595" y="570" class="mono">"tool"</text>
+  <text x="780" y="570" class="body">标识这是工具结果消息</text>
+  <path d="M40 594 H1140" class="rule"/>
+
+  <rect x="40" y="594" width="1100" height="64" fill="#fafbfd"/>
+  <text x="58" y="634" class="mono">status</text>
+  <text x="300" y="634" class="mono">"success" | "error"</text>
+  <text x="595" y="634" class="mono">"success"</text>
+  <text x="780" y="634" class="body">执行成功，还是执行失败</text>
+  <path d="M40 658 H1140" class="rule"/>
+
+  <text x="58" y="698" class="mono">name</text>
+  <text x="300" y="698" class="mono">str | None</text>
+  <text x="595" y="698" class="mono">None</text>
+  <text x="780" y="698" class="body">工具名，如 read_file</text>
+  <path d="M40 722 H1140" class="rule"/>
+
+  <rect x="40" y="722" width="1100" height="64" fill="#fafbfd"/>
+  <text x="58" y="762" class="mono">id</text>
+  <text x="300" y="762" class="mono">str | None</text>
+  <text x="595" y="762" class="mono">None</text>
+  <text x="780" y="748" class="body">这条消息自身的编号</text>
+  <text x="780" y="778" class="small">不要与 tool_call_id 混淆</text>
+  <path d="M40 786 H1140" class="rule"/>
+
+  <text x="58" y="826" class="mono">artifact</text>
+  <text x="300" y="826" class="mono">Any</text>
+  <text x="595" y="826" class="mono">None</text>
+  <text x="780" y="812" class="body">留给应用的完整结果 / 附件</text>
+  <text x="780" y="842" class="small">不会自动发送给模型</text>
+  <path d="M40 850 H1140" class="rule"/>
+
+  <rect x="40" y="850" width="1100" height="64" fill="#fafbfd"/>
+  <text x="58" y="890" class="mono">additional_kwargs</text>
+  <text x="300" y="890" class="mono">dict</text>
+  <text x="595" y="890" class="mono">{}</text>
+  <text x="780" y="890" class="body">预留的额外消息数据</text>
+  <path d="M40 914 H1140" class="rule"/>
+
+  <text x="58" y="954" class="mono">response_metadata</text>
+  <text x="300" y="954" class="mono">dict</text>
+  <text x="595" y="954" class="mono">{}</text>
+  <text x="780" y="954" class="body">响应的附加元信息</text>
+  <path d="M40 978 H1140" class="rule"/>
+
+  <!-- 明确区分项目内消息对象与 Claude 接口中的实际表示。 -->
+  <text x="40" y="1030" class="heading">02 / 同一条结果，在项目里与 Claude 接口里长什么样？</text>
+  <rect x="40" y="1052" width="520" height="302" rx="10" fill="#f5f8fd"/>
+  <text x="60" y="1086" class="label">项目内：LangChain 消息对象</text>
+  <text x="60" y="1128" class="code" xml:space="preserve"><tspan x="60">ToolMessage(</tspan><tspan x="60" dy="30">    content="会议纪要...",</tspan><tspan x="60" dy="30">    tool_call_id="call_1",</tspan><tspan x="60" dy="30">    name="read_file",</tspan><tspan x="60" dy="30">    status="success",</tspan><tspan x="60" dy="30">)</tspan></text>
+  <path d="M570 1195 H605" class="link"/>
+
+  <rect x="620" y="1052" width="520" height="302" rx="10" fill="#f0f7f3"/>
+  <text x="640" y="1086" class="label">Claude API：适配器转换后的片段</text>
+  <text x="640" y="1120" class="code" xml:space="preserve"><tspan x="640">{</tspan><tspan x="640" dy="24">  "role": "user",</tspan><tspan x="640" dy="24">  "content": [{</tspan><tspan x="640" dy="24">    "type": "tool_result",</tspan><tspan x="640" dy="24">    "tool_use_id": "call_1",</tspan><tspan x="640" dy="24">    "content": "会议纪要...",</tspan><tspan x="640" dy="24">    "is_error": false</tspan><tspan x="640" dy="24">  }]</tspan><tspan x="640" dy="24">}</tspan></text>
+
+  <text x="40" y="1394" class="body">字段对应：tool_call_id → tool_use_id；status="error" → is_error=true。</text>
+  <text x="40" y="1430" class="small">下一轮：历史消息 + 这条工具结果 → Claude 继续判断，决定再次用工具或生成最终回答。</text>
+  <text x="40" y="1464" class="small">类型依据本项目安装的 langchain-core；这里只展示工具结果片段，不是完整的 API 请求体。</text>
+</svg>

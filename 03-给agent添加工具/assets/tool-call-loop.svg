@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="650" viewBox="0 0 1360 650">
+  <defs>
+    <!-- 使用 userSpaceOnUse，避免箭头随线宽被放大；开放式箭头更轻、更容易辨认。 -->
+    <marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#3b4c61" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .title{font:700 26px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#16283d}
+      .subtitle{font:15px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#617083}
+      .num{font:700 15px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#fff}
+      .label{font:700 17px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#16283d}
+      .small{font:14px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#617083}
+      .edge{font:14px 'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#3b4c61}
+      .box{stroke-width:1.6;rx:14}.line{stroke:#3b4c61;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
+      .loop{stroke:#3b4c61;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1360" height="650" fill="#fbfcfe"/>
+  <text x="60" y="48" class="title">工具调用如何回到 Agent Loop</text>
+  <text x="60" y="78" class="subtitle">模型提出行动，Harness 负责校验和执行；工具结果写回消息历史后，再进入下一轮判断。</text>
+
+  <rect x="60" y="140" width="185" height="112" class="box" fill="#eaf2ff" stroke="#8ca9d1"/><circle cx="86" cy="166" r="16" fill="#4d78aa"/><text x="86" y="172" text-anchor="middle" class="num">1</text><text x="152" y="188" text-anchor="middle" class="label">用户目标</text><text x="152" y="216" text-anchor="middle" class="small">任务与当前信息</text>
+  <rect x="300" y="140" width="205" height="112" class="box" fill="#eaf2ff" stroke="#8ca9d1"/><circle cx="326" cy="166" r="16" fill="#4d78aa"/><text x="326" y="172" text-anchor="middle" class="num">2</text><text x="402" y="188" text-anchor="middle" class="label">模型选择行动</text><text x="402" y="216" text-anchor="middle" class="small">回答，或请求工具</text>
+  <rect x="560" y="140" width="210" height="112" class="box" fill="#fff5df" stroke="#d5b36b"/><circle cx="586" cy="166" r="16" fill="#b48734"/><text x="586" y="172" text-anchor="middle" class="num">3</text><text x="665" y="188" text-anchor="middle" class="label">Harness 校验</text><text x="665" y="216" text-anchor="middle" class="small">名称、参数、权限</text>
+  <rect x="825" y="140" width="185" height="112" class="box" fill="#e9f6ef" stroke="#88b69b"/><circle cx="851" cy="166" r="16" fill="#4e8b63"/><text x="851" y="172" text-anchor="middle" class="num">4</text><text x="918" y="188" text-anchor="middle" class="label">工具执行</text><text x="918" y="216" text-anchor="middle" class="small">访问受控环境</text>
+  <rect x="1065" y="140" width="235" height="112" class="box" fill="#e9f6ef" stroke="#88b69b"/><circle cx="1091" cy="166" r="16" fill="#4e8b63"/><text x="1091" y="172" text-anchor="middle" class="num">5</text><text x="1182" y="188" text-anchor="middle" class="label">结果写入消息历史</text><text x="1182" y="216" text-anchor="middle" class="small">ToolMessage：结果或错误</text>
+  <path d="M245 196 H290" class="line"/><path d="M505 196 H550" class="line"/><path d="M770 196 H815" class="line"/><path d="M1010 196 H1055" class="line"/><text x="527" y="181" text-anchor="middle" class="edge">需要工具</text>
+
+  <rect x="292" y="360" width="220" height="102" class="box" fill="#f1f3f6" stroke="#a8b1bd"/><text x="402" y="399" text-anchor="middle" class="label">最终回答</text><text x="402" y="427" text-anchor="middle" class="small">任务完成，结束本次循环</text><path d="M402 252 V350" class="line"/><text x="425" y="305" class="edge">不需要工具</text>
+  <path d="M1182 252 V530 H260 V290 H335 V262" class="loop"/><text x="795" y="558" text-anchor="middle" class="edge">把 ToolMessage 加回历史，作为下一轮模型输入</text>
+  <text x="60" y="612" class="subtitle">模型不直接操作文件或系统；每次工具调用都经过 Harness 的检查，结果再回到同一条消息链。</text>
+</svg>

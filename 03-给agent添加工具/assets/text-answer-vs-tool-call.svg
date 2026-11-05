@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000" role="img" aria-labelledby="comparison-title comparison-desc">
+  <title id="comparison-title">普通回答与工具调用：给出文字，还是实际执行</title>
+  <desc id="comparison-desc">同样是把会议纪要保存到 notes.md，普通回答由模型生成内容，应用展示文字，并不会创建文件。工具调用由模型提出 write_file 请求，Harness 检查参数与路径并取得用户确认，再执行工具写入真实文件。执行结果返回消息历史，模型可以继续调用工具或根据结果回复用户。</desc>
+  <defs>
+    <marker id="comparison-arrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10" fill="none" stroke="#43536a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text{font-family:'Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#20324a}
+      .title{font-size:30px;font-weight:700}
+      .heading{font-size:27px;font-weight:700}
+      .label{font-size:24px;font-weight:600}
+      .body{font-size:22px}
+      .small{font-size:20px;fill:#526379}
+      .note{font-size:21px;fill:#526379}
+      .mono{font-family:'Cascadia Code',Consolas,'Microsoft YaHei',monospace;font-size:19px}
+      .flow{fill:none;stroke:#43536a;stroke-width:2;stroke-linejoin:round;marker-end:url(#comparison-arrow)}
+    </style>
+  </defs>
+
+  <rect width="1200" height="1000" fill="#ffffff"/>
+  <text x="40" y="49" class="title">同一个需求：只给出回答，还是实际执行？</text>
+  <rect x="40" y="86" width="1120" height="70" rx="10" fill="#f1f4f8"/>
+  <text x="64" y="130" class="body">用户：把这段会议纪要保存到 notes.md。</text>
+
+  <!-- 左栏：只生成与展示文本，不调用外部工具。 -->
+  <rect x="40" y="184" width="540" height="748" rx="14" fill="#f5f8fd"/>
+  <rect x="40" y="205" width="5" height="57" rx="2" fill="#4d78aa"/>
+  <text x="74" y="226" class="heading">普通回答</text>
+  <text x="74" y="255" class="small">先把内容写给你看</text>
+
+  <rect x="74" y="278" width="472" height="104" rx="10" fill="#e8f0fc" stroke="#9db4d5" stroke-width="1.4"/>
+  <text x="98" y="319" class="label">模型生成文本</text>
+  <text x="98" y="353" class="small">把已有信息组织成一段回答</text>
+  <path d="M310 382 V424" class="flow"/>
+
+  <rect x="74" y="434" width="472" height="225" rx="10" fill="#ffffff" stroke="#b3c1d4" stroke-width="1.4"/>
+  <text x="98" y="473" class="label">应用展示回答</text>
+  <path d="M98 494 H522" stroke="#dde4ef" stroke-width="1"/>
+  <text x="98" y="530" class="body">会议纪要如下：</text>
+  <text x="98" y="565" class="body">1. 确定本周发布范围</text>
+  <text x="98" y="599" class="body">2. 周五前完成联调</text>
+  <text x="98" y="634" class="small">请将以上内容保存为 notes.md。</text>
+  <path d="M310 659 V701" class="flow"/>
+
+  <rect x="74" y="711" width="472" height="117" rx="10" fill="#eef2f7"/>
+  <text x="98" y="756" class="label">交付的是一段文字</text>
+  <text x="98" y="791" class="body">notes.md 尚未在磁盘上创建</text>
+  <text x="74" y="877" class="note">不通过工具读取或修改外部环境</text>
+  <text x="74" y="907" class="small">这一步只完成了“生成与展示”。</text>
+
+  <!-- 右栏：执行主线与结果回路使用不同通道，不重叠。 -->
+  <rect x="620" y="184" width="540" height="748" rx="14" fill="#f3f9f6"/>
+  <rect x="620" y="205" width="5" height="57" rx="2" fill="#408063"/>
+  <text x="654" y="226" class="heading">工具调用</text>
+  <text x="654" y="255" class="small">让程序去把事情做成</text>
+
+  <rect x="654" y="278" width="440" height="132" rx="10" fill="#e8f0fc" stroke="#9db4d5" stroke-width="1.4"/>
+  <text x="678" y="316" class="label">模型提出结构化请求</text>
+  <text x="678" y="350" class="body">工具：write_file</text>
+  <text x="678" y="384" class="mono">参数：path="notes.md", content="…"</text>
+  <path d="M874 410 V444" class="flow"/>
+
+  <rect x="654" y="454" width="440" height="96" rx="10" fill="#fff4df" stroke="#d2b47b" stroke-width="1.4"/>
+  <text x="678" y="493" class="label">Harness 校验并执行工具</text>
+  <text x="678" y="527" class="small">检查参数与路径 · 用户确认写入</text>
+  <path d="M874 550 V584" class="flow"/>
+
+  <rect x="654" y="594" width="440" height="100" rx="10" fill="#e3f2e9" stroke="#8fbaa2" stroke-width="1.4"/>
+  <text x="678" y="634" class="label">文件已写入：notes.md</text>
+  <text x="678" y="669" class="small">执行结果返回消息历史</text>
+
+  <!-- 反馈走最右侧专用通道，从侧面返回模型，不穿过任何框。 -->
+  <path d="M1094 644 H1132 V344 H1104" class="flow"/>
+  <path d="M874 694 V734" class="flow"/>
+
+  <rect x="654" y="744" width="440" height="84" rx="10" fill="#ffffff" stroke="#a5bdae" stroke-width="1.4"/>
+  <text x="678" y="779" class="label">模型根据结果回答</text>
+  <text x="678" y="812" class="small">“已将会议纪要保存到 notes.md。”</text>
+  <text x="654" y="877" class="note">结果返回模型，必要时继续调用工具</text>
+  <text x="654" y="907" class="small">工具可以读取环境，也可以改变环境。</text>
+
+  <text x="40" y="977" class="note">关键区别：生成“已保存”这句话 ≠ 文件真的保存了。真正的读写，需要工具实际执行。</text>
+</svg>

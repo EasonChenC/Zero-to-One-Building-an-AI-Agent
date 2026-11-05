@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#425466"/></marker>
+    <style>
+      .title{font:700 21px 'Microsoft YaHei',sans-serif;fill:#132238}.label{font:600 17px 'Microsoft YaHei',sans-serif;fill:#132238}.small{font:14px 'Microsoft YaHei',sans-serif;fill:#526274}.box{stroke:#9aaabd;stroke-width:1.5;rx:12}.line{stroke:#425466;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1100" height="360" fill="#f7f9fc"/>
+  <text x="40" y="42" class="title">模型、Harness 与工具：把判断连接到真实环境</text>
+  <rect x="50" y="105" width="210" height="150" class="box" fill="#e9f1ff"/>
+  <text x="155" y="150" text-anchor="middle" class="label">模型</text><text x="155" y="182" text-anchor="middle" class="small">理解目标</text><text x="155" y="207" text-anchor="middle" class="small">选择下一步行动</text>
+  <rect x="405" y="82" width="290" height="196" class="box" fill="#fff4dc"/>
+  <text x="550" y="126" text-anchor="middle" class="label">Harness</text><text x="550" y="160" text-anchor="middle" class="small">提供工具说明</text><text x="550" y="185" text-anchor="middle" class="small">校验请求与权限</text><text x="550" y="210" text-anchor="middle" class="small">调度执行并保存结果</text><text x="550" y="248" text-anchor="middle" class="small">把结果交回模型</text>
+  <rect x="840" y="105" width="210" height="150" class="box" fill="#e8f6ef"/>
+  <text x="945" y="150" text-anchor="middle" class="label">工具 / 环境</text><text x="945" y="182" text-anchor="middle" class="small">文件、API、数据库</text><text x="945" y="207" text-anchor="middle" class="small">执行真实动作</text>
+  <path d="M260 155 H400" class="line"/><text x="330" y="140" text-anchor="middle" class="small">行动请求</text>
+  <path d="M695 155 H835" class="line"/><text x="765" y="140" text-anchor="middle" class="small">受控执行</text>
+  <path d="M840 220 H700" class="line"/><text x="770" y="250" text-anchor="middle" class="small">执行结果</text>
+  <path d="M405 235 H270" class="line"/><text x="338" y="272" text-anchor="middle" class="small">反馈给模型</text>
+</svg>
